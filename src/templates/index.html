@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algorithm Visualizer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        .category-underline {
+            width: 100%;
+            height: 2px;
+            background-color: blue;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Algorithm Visualizer</h1>
+        </header>
+        
+        <nav>
+            <div class="algorithm-category" id="sorting">
+                <h2>Sorting Algorithms</h2>
+                <ul>
+                    <li data-algo="bubble-sort">Bubble Sort</li>
+                    <li data-algo="quick-sort">Quick Sort</li>
+                    <li data-algo="merge-sort">Merge Sort</li>
+                    <li data-algo="insertion-sort">Insertion Sort</li>
+                    <li data-algo="selection-sort">Selection Sort</li>
+                </ul>
+            </div>
+            
+            <div class="algorithm-category" id="search-and-graph">
+                <div class="algorithm-subcategory" id="search-algorithms">
+                    <h2>Search Algorithms</h2>
+                    <ul>
+                        <li data-algo="binary-search">Binary Search</li>
+                        <li data-algo="linear-search">Linear Search</li>
+                    </ul>
+                </div>
+
+                <div class="algorithm-subcategory" id="graph-algorithms">
+                    <h2>Graph Algorithms</h2>
+                    <ul>
+                        <li data-algo="depth-first-search">Depth-First Search</li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        
+        <main id="visualization-area">
+            <div id="visualization-container">
+                <div id="algorithm-display">
+                    <svg id="algorithm-svg" width="600" height="300"></svg>
+                </div>
+                
+                <div id="algorithm-controls">
+                    <button id="start-btn">Start</button>
+                    <button id="step-btn">Step</button>
+                    <button id="reset-btn">Reset</button>
+                </div>
+
+                <div id="algorithm-description">
+                    <h2 id="algorithm-name">Select an Algorithm</h2>
+                    <p id="algorithm-explanation">Choose an algorithm from the list to see its detailed explanation and visualization.</p>
+                </div>
+
+                <div id="step-list-container" style="display: none;">
+                    <h3>Step-by-Step Process</h3>
+                    <ul id="step-list"></ul>
+                </div>
+            </div>
+
+            <div id="algorithm-code-section">
+                <h3>Code Snippet</h3>
+                <pre><code id="algorithm-code-snippet">Select an algorithm to view its implementation</code></pre>
+            </div>
+
+            <div id="complexity-explanation">
+                <h2>Algorithm Complexity</h2>
+                <div class="complexity-section">
+                    <h3>Time Complexity</h3>
+                    <ul id="time-complexity-details">
+                        <li>Select an algorithm to view its time complexity</li>
+                    </ul>
+                </div>
+                <div class="complexity-section">
+                    <h3>Space Complexity</h3>
+                    <ul id="space-complexity-details">
+                        <li>Select an algorithm to view its space complexity</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

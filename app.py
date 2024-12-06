@@ -1,6 +1,6 @@
 import os
 import sys
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, send_from_directory, jsonify
 from flask_cors import CORS
 
 # Add project root to Python path
@@ -25,8 +25,13 @@ def list_algorithms():
     }
     return jsonify(algorithms)
 
+@app.route('/static/<path:filename>')
+def serve_static(filename):
+    return send_from_directory('src/static', filename)
+
 if __name__ == '__main__':
+    port = int(os.environ.get('PORT', 5000))
     print("Starting Algorithm Visualizer...")
     print(f"Static folder: {app.static_folder}")
     print(f"Template folder: {app.template_folder}")
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(debug=True, host='0.0.0.0', port=port)
